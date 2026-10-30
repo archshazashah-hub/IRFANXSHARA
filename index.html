@@ -2,69 +2,118 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shara & Irfan</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: #f8f1ee;
-  color: #594944;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7efeb;
+  color: #66504b;
   font-family: Georgia, serif;
   text-align: center;
-  padding-top: 25vh;
+}
+
+.invitation {
+  padding: 30px 20px;
+}
+
+.initials {
+  font-size: 25px;
+  letter-spacing: 8px;
+  margin-bottom: 35px;
+}
+
+.envelope {
+  font-size: 85px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 38px;
+  font-weight: normal;
+  font-style: italic;
+  margin: 10px 0;
+}
+
+.subtitle {
+  font-size: 12px;
+  letter-spacing: 4px;
+  margin: 22px 0 35px;
 }
 
 button {
-  padding: 15px 28px;
-  border: 1px solid #b99b91;
-  border-radius: 30px;
   background: #fffaf7;
-  color: #594944;
-  font-size: 16px;
+  color: #66504b;
+  border: 1px solid #bca49a;
+  border-radius: 30px;
+  padding: 15px 30px;
+  font-family: Georgia, serif;
+  font-size: 15px;
   cursor: pointer;
+}
+
+.note {
+  font-size: 11px;
+  margin-top: 22px;
+  color: #947e75;
 }
 </style>
 </head>
 
 <body>
 
-<h1>💌</h1>
-<h1>Shara & Irfan</h1>
-<p>YOU ARE INVITED</p>
+<div class="invitation">
+  <div class="initials">I & S</div>
 
-<button onclick="openInvitation()">
-Tap to Open 💌
-</button>
+  <div class="envelope">💌</div>
 
-<p id="status"></p>
+  <h1>Shara & Irfan</h1>
 
-<audio id="music" loop>
-  <source src="a-couple-minutes-instrumental.mp3" type="audio/mpeg">
+  <div class="subtitle">YOU ARE INVITED</div>
+
+  <button id="openInvitation">
+    Tap to Open 💌
+  </button>
+
+  <p class="note">A little music, a special invitation.</p>
+</div>
+
+<audio id="backgroundMusic"
+       src="a-couple-minutes-instrumental.mp3"
+       preload="auto"
+       loop>
 </audio>
 
 <script>
-function openInvitation() {
+const invitationUrl =
+"https://sharaxirfanengagement.my.canva.site/engagement-invitation-2026";
 
-  const invitation = window.open(
-    "https://sharaxirfanengagement.my.canva.site/engagement-invitation-2026",
-    "_blank"
-  );
+const button = document.getElementById("openInvitation");
+const music = document.getElementById("backgroundMusic");
 
-  const music = document.getElementById("music");
+button.addEventListener("click", function () {
 
-  music.play().then(() => {
-    document.getElementById("status").innerText =
-      "Music is playing. Keep this tab open ♫";
-  }).catch(() => {
-    document.getElementById("status").innerText =
-      "Please tap again to start the music.";
+  // Open Canva directly in a new tab
+  window.open(invitationUrl, "_blank");
+
+  // Start music from the same tap
+  music.play().then(function () {
+    button.textContent = "Music Playing ♡";
+  }).catch(function () {
+    button.textContent = "Tap to Open 💌";
+    alert("Music could not start. Please check that the MP3 file is uploaded correctly.");
   });
 
-  if (!invitation) {
-    document.getElementById("status").innerText =
-      "Please allow pop-ups and tap again.";
-  }
-}
+});
 </script>
 
 </body>
