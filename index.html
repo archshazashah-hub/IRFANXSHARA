@@ -1,45 +1,79 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Shara & Irfan</title>
+
 <style>
+
 body {
+
   background: #f8f1ee;
+
   color: #594944;
+
   font-family: Georgia, serif;
+
   text-align: center;
+
   padding-top: 25vh;
+
 }
+
 button {
+
   padding: 15px 28px;
+
   border: 1px solid #b99b91;
+
   border-radius: 30px;
+
   background: #fffaf7;
+
   color: #594944;
+
   font-size: 16px;
+
+  cursor: pointer;
+
 }
+
 </style>
+
 </head>
+
 <body>
 
 <h1>💌</h1>
+
 <h1>Shara & Irfan</h1>
+
 <p>YOU ARE INVITED</p>
 
 <button onclick="openInvitation()">
+
 Tap to Open 💌
+
 </button>
 
 <p id="status"></p>
 
 <audio id="music" loop>
+
   <source src="a-couple-minutes-instrumental.mp3" type="audio/mpeg">
+
 </audio>
 
 <script>
+
 function openInvitation() {
+
   const invitation = window.open(
   "https://sharaxirfanengagement.my.canva.site/engagement-invitation-2026",
   "_blank"
@@ -48,19 +82,31 @@ function openInvitation() {
   const music = document.getElementById("music");
 
   music.play().then(() => {
+
     document.getElementById("status").innerText =
+
       "Music is playing. Keep this tab open ♫";
+
   }).catch(() => {
+
     document.getElementById("status").innerText =
+
       "Please tap again to start the music.";
+
   });
 
   if (!invitation) {
+
     document.getElementById("status").innerText =
+
       "Please allow pop-ups and tap again.";
+
   }
+
 }
+
 </script>
 
 </body>
+
 </html>
